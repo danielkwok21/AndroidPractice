@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
         //providing layout manager to recyclerView
         recyclerView.setLayoutManager(layoutManager);
 
+        //getting string array from resources, and returning as a list
         list = Arrays.asList(getResources().getStringArray(R.array.android_versions));
         adapter = new RecyclerAdapter(list);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);//size do not alter according to data within
         recyclerView.setAdapter(adapter);
     }
 
