@@ -1,9 +1,12 @@
 package com.example.danielkwok.recycleviewapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +17,11 @@ import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ImageViewHolder>{
 
-    private int[] images;   //p.s. images are stores as int arrays
-    public AlbumAdapter(int[] images){
+    private int[] images;
+    private Context context;
+    public AlbumAdapter(int[] images, Context context){
         this.images = images;
+        this.context = context;
     }
 
     @NonNull
@@ -26,7 +31,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ImageViewHol
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
         View view = (View)layoutInflater.inflate(R.layout.album_layout, viewGroup, false);
-        ImageViewHolder imageViewHolder = new ImageViewHolder(view);
+        ImageViewHolder imageViewHolder = new ImageViewHolder(view, context, images);
 
         return imageViewHolder;
     }
@@ -36,6 +41,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ImageViewHol
         int image_id = images[i];
 
         //setting attr of viewHolder
+        
         viewHolder.image.setImageResource(image_id);
         viewHolder.imageTitle.setText("Image "+i);
     }
@@ -46,15 +52,26 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ImageViewHol
     }
 
     //creating viewHolder
-    public static class ImageViewHolder extends RecyclerView.ViewHolder{
+    public static class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView image;
         TextView imageTitle;
+        Context context;
+        int[] images;
 
-        public ImageViewHolder(View v){
+        private ImageViewHolder(View v, Context context, int[] images){
             super(v);
-            image = v.findViewById(R.id.image);
-            imageTitle = v.findViewById(R.id.imageTitle);
+            this.image = v.findViewById(R.id.image);
+            this.imageTitle = v.findViewById(R.id.imageTitle);
+            this.context = context;
+            this.images = images;
+            v.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(context, DisplayActivity.class);
+            intent.putExtra("image_id", images[getAdapterPosition()]);
+            context.startActivity(intent);
         }
     }
 }

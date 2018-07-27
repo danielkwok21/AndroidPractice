@@ -26,7 +26,12 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.pic7,
             R.drawable.pic8,
     };
-
+    //xml hierachy
+    /*
+    * main: activity_main
+    * contains: id.recyclerView
+    * takes in parameter: layoutManager
+    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        adapter = new AlbumAdapter(images);
+        adapter = new AlbumAdapter(images, this);
         recyclerView.setAdapter(adapter);
 
     }
