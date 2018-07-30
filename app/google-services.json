@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:698472111:android:d343935246cc8c94",
+        "mobilesdk_app_id": "1:698472111:android:e5206ca67e42e948",
         "android_client_info": {
-          "package_name": "com.example.danielkwok.sampleApp"
+          "package_name": "com.example.danielkwok.AndroidSampleApp"
         }
       },
       "oauth_client": [
@@ -31,6 +31,50 @@
         "appinvite_service": {
           "status": 1,
           "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698472111:android:d343935246cc8c94",
+        "android_client_info": {
+          "package_name": "com.example.danielkwok.sampleApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698472111-603tnl071cao5i55hb80kc2jrtmmc5j5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.danielkwok.sampleApp",
+            "certificate_hash": "69df761a4aa51936761debe34c5e5e9cc05234fb"
+          }
+        },
+        {
+          "client_id": "698472111-rhke1ng52scsrhhhrcli2cibqscml7n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZvWFO50d8RlyhEted0cfTesYKZwhk0T8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698472111-rhke1ng52scsrhhhrcli2cibqscml7n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
