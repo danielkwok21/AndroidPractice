@@ -1,7 +1,8 @@
-package com.example.danielkwok.recycleviewapp;
+package com.example.danielkwok.AndroidSampleApp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 
 public class MainActivity extends AppCompatActivity {
 
