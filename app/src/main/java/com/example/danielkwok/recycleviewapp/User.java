@@ -3,26 +3,27 @@ package com.example.danielkwok.recycleviewapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Person {
-    private int id;
+import java.util.UUID;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class User extends RealmObject{
+    @PrimaryKey
+    private String id;
     private String name;
     private int age;
 
-    public Person(){
-        this.id++;
+    public User(){
         this.name = "John Doe";
         this.age = 0;
     }
 
-    public Person(String name, int age){
-        this.id++;
+    public User(String name, int age){
         this.name = name;
         this.age = age;
     }
 
-    public int getId(){
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -35,7 +36,6 @@ public class Person {
     public String toJSON(){
         JSONObject jsonObject= new JSONObject();
         try {
-            jsonObject.put("id", getId());
             jsonObject.put("name", getName());
             jsonObject.put("age", getAge());
 
