@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView ageLabel;
     EditText ageInput;
     Button enterButton;
+    TextView counter;
 
     User user;
     String name;
@@ -42,11 +44,14 @@ public class MainActivity extends AppCompatActivity {
         ageLabel = findViewById(R.id.ageLabel);
         ageInput = findViewById(R.id.ageInput);
         enterButton = findViewById(R.id.enterButton);
+        counter = findViewById(R.id.counter);
 
         enterButton.setOnClickListener((View v)->{
             save();
             Toast.makeText(this, "entered new User", Toast.LENGTH_LONG).show();
         });
+
+        counter.setText("0");
 
         read();
 
@@ -70,11 +75,21 @@ public class MainActivity extends AppCompatActivity {
         mRealm.commitTransaction();
     }
 
+
     private void read(){
         //realm read
         RealmResults<User> realmUsers = mRealm.where(User.class).findAll();
         for(User u:realmUsers){
             Log.d(TAG, u.toJSON());
         }
+
+        realmUsers.addChangeListener(new RealmChangeListener<RealmResults<User>>() {
+            @Override
+            public void onChange(RealmResults<User> users) {
+                long count = realmUsers.size();
+                counter.setText(Long.toString(count));
+            }
+        });
     }
+
 }
