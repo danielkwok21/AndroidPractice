@@ -1,6 +1,5 @@
 package com.example.danielkwok.recycleviewapp;
 
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,17 +33,21 @@ public class MainActivity extends AppCompatActivity {
         enterButton = findViewById(R.id.enterButton);
 
         enterButton.setOnClickListener((View v)->{
-            name = nameInput.getText().toString();
-            try{
-                age = Integer.parseInt(ageInput.getText().toString());
-            }catch(NumberFormatException e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-            }
-            p = new Person(name, age);
-            Log.d(TAG, p.toJSON());
-
+            save();
             Toast.makeText(this, "entered new person", Toast.LENGTH_LONG).show();
         });
+    }
+
+     private void save(){
+        name = nameInput.getText().toString();
+        try{
+            age = Integer.parseInt(ageInput.getText().toString());
+        }catch(NumberFormatException e){
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
+        p = new Person(name, age);
+        Log.d(TAG, p.toJSON());
+
     }
 
 }
