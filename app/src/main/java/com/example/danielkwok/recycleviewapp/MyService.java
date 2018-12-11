@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 * */
 public class MyService extends Service {
     private static final String TAG = "MyService";
-    private static int counter = 0;
+    private static int counter;
     
     public MyService() {
     }
@@ -27,6 +27,7 @@ public class MyService extends Service {
      * */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand: ");
         new Thread(new Runnable(){
             @Override
             public void run() {
@@ -41,7 +42,34 @@ public class MyService extends Service {
             }
         }).start();
 
-        return START_STICKY;
+        return START_STICKY ;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onCreate() {
+        Log.d(TAG, "onCreate: ");
+        super.onCreate();
+//        counter = 0 ;
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                try {
+//                    for(int i=0 ;i<1000; i++){
+//                        Log.d(TAG, "counter: "+counter++);
+//                        sleep(1000);
+//                    }
+//                } catch (InterruptedException e) {
+//                    Log.d(TAG, "run: "+e);
+//                }
+//            }
+//        }).start();
+
     }
 
     /**

@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
-    boolean bounded = false;
+    boolean bounded;
     MyService myService;
     Intent i;
 
@@ -55,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bindService.setOnClickListener((v)->{
-            bindService(i, connection, BIND_AUTO_CREATE);
+            if(bounded){
+                unbindService(connection);
+                bounded = false;
+            }else{
+                bindService(i, connection, BIND_AUTO_CREATE);
+            }
         });
 
     }
@@ -84,15 +89,4 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    /**
-     * 3. Kills of service when activity is closed
-     * */
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(bounded){
-            unbindService(connection);
-            bounded = false;
-        }
-    }
 }
